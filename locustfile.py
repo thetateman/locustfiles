@@ -1341,13 +1341,25 @@ class alpha_nextthought_com12_har_2480081456(TaskSequence):
     @seq_task(146)
     def GET_wss_alpha_nextthought_com_1547110500__socket_io_1_websocket_sessionid_635440412_6214409689335893478(self):
 
+        cookie_jar = self.client.cookies
+        print(cookie_jar)
+        cookie_string = ""
+        i = 0
+        for cookie in cookie_jar:
+            print(i)
+            i += 1
+            print(f"name: {cookie.name}")
+            print(f"value: {cookie.value}")
+            cookie_string += f"{cookie.name}={cookie.value}; "
+        cookie_string = cookie_string[:-2]
+        print(cookie_string)
+        time.sleep(20)
         body = json.dumps({"name": "chat_setPresence", "args": [
             {"MimeType": "application/vnd.nextthought.presenceinfo", "username": "stress.tester54", "type": "available",
              "show": "chat", "status": "Available"}]})
-        print("sleeping")
-        time.sleep(30)
-        print("done")
+
         self.ws = websocket.create_connection(f'wss://alpha.nextthought.com/socket.io/1/websocket/{self.socket_id}',
+                                              cookie=cookie_string,
                                               sslopt={"cert_reqs": ssl.CERT_NONE})
 
         print("Connection made (maybe??) sending messages...")
