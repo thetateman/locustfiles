@@ -858,35 +858,6 @@ class ChatTestSequence(TaskSequence):
                      'If-None-Match': '"Ug7MBBOHlDEUFxanIvGcXQ./gz"',
                      'If-Modified-Since': 'Thu, 15 Jul 2021 21:54:17 GMT'})
 
-        
-    @seq_task(146)
-    def PUT_https_alpha_nextthought_com_1547110500__dataserver2_users_stress_tester51_FriendsLists_mycontacts_stress_tester51_674307179_5556765244745205178(
-            self):
-        response = self.client.put(
-            url=f'https://alpha.nextthought.com/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
-            name=f'https://alpha.nextthought.com/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
-            timeout=30, allow_redirects=False,
-            headers={'Host': 'alpha.nextthought.com', 'Connection': 'keep-alive', 'Content-Length': '962',
-                     'X-NTI-Client-TZOffset': '-300', 'X-NTI-Client-Timezone': 'America/Chicago',
-                     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36',
-                     'Content-Type': 'application/json', 'accept': 'application/json',
-                     'X-NTI-Client-Version': '2021.11.2', 'X-NTI-Client-App': '@nti/web-app',
-                     'x-requested-with': 'XMLHttpRequest', 'Sec-GPC': '1', 'Origin': 'https://alpha.nextthought.com',
-                     'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty',
-                     'Referer': 'https://alpha.nextthought.com/app/user/stress.tester76',
-                     'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9'},
-            json={'Creator': f'stress.tester{self.user_id}', 'CreatedTime': 1620229030.540428, 'Last Modified': 1620412159.112719,
-                  'NTIID': f'tag:nextthought.com,2011-10:stress.tester{self.user_id}-MeetingRoom:Group-mycontacts_stress.tester{self.user_id}',
-                  'MimeType': 'application/vnd.nextthought.friendslist',
-                  'OID': f'tag:nextthought.com,2011-10:stress.tester{self.user_id}-OID-0x1f4bb8b7:5573657273:KZ5c0zMXcH3', 'Links': [
-                    {'href': f'/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
-                     'ntiid': f'tag:nextthought.com,2011-10:stress.tester{self.user_id}-MeetingRoom:Group-mycontacts_stress.tester{self.user_id}',
-                     'rel': 'edit'}],
-                  'href': f'/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
-                  'alias': 'My Contacts', 'avatarURL': None, 'blurredAvatarURL': None,
-                  'ID': f'mycontacts-stress.tester{self.user_id}', 'realname': f'mycontacts-stress.tester{self.user_id}',
-                  'Username': f'mycontacts-stress.tester{self.user_id}',
-                  'friends': ['stress.tester53']}, params=[])
 
     @seq_task(147)
     def GET_wss_alpha_nextthought_com_1547110500__socket_io_1_websocket_sessionid_635440412_6214409689335893478(self):
@@ -909,12 +880,26 @@ class ChatTestSequence(TaskSequence):
         self.ws.send(f'5:1+::{{"name":"chat_setPresence","args":[{{"MimeType":"application/vnd.nextthought.presenceinfo","username":"stress.tester{self.user_id}","type":"available","show":"chat","status":"Available"}}]}}')
         time.sleep(2)
         self.ws.send(f'5:2+::{{"name":"chat_enterRoom","args":[{{"Occupants":["stress.tester53","stress.tester{self.user_id}"],"ContainerId":"tag:nextthought.com,2011-10:Root"}}]}}')
+
         time.sleep(1)
-        self.ws.send(f'5:3+::{{"name":"chat_postMessage","args":[{{"Class":"MessageInfo","ContainerId":"tag:nextthought.com,2011-10:stress.tester{self.user_id}-OID-0x28d747b3:5573657273:acT6M3SSAHV","body":{{"state":"composing"}},"channel":"STATE"}}]}}')
+        incoming_message = ""
+        receiving = True
+        while receiving:
+            incoming_message = self.ws.recv()
+            if incoming_message is None:
+                print("Did not get a message back from the websocket")
+                break
+            if "OID-" in incoming_message:
+                receiving = False
+
+
+        OID_start = incoming_message.find("OID-")
+        OID_end = incoming_message.find("\"", OID_start)
+        OID = incoming_message[OID_start + 4:OID_end]
+        self.ws.send(f'5:3+::{{"name":"chat_postMessage","args":[{{"Class":"MessageInfo","ContainerId":"tag:nextthought.com,2011-10:stress.tester{self.user_id}-OID-{OID}","body":{{"state":"composing"}},"channel":"STATE"}}]}}')
         time.sleep(1)
-        self.ws.send(f'5:4+::{{"name":"chat_postMessage","args":[{{"Class":"MessageInfo","ContainerId":"tag:nextthought.com,2011-10:stress.tester{self.user_id}-OID-0x28d747b3:5573657273:acT6M3SSAHV","body":["locustTest"],"channel":"DEFAULT"}}]}}')
+        self.ws.send(f'5:4+::{{"name":"chat_postMessage","args":[{{"Class":"MessageInfo","ContainerId":"tag:nextthought.com,2011-10:stress.tester{self.user_id}-OID-{OID}","body":["locustTest"],"channel":"DEFAULT"}}]}}')
         time.sleep(30)
-        print(self.ws.recv())
 
 class LocustForalpha_nextthought_com12_har_2480081456(HttpLocust):
     if LOCUST_MAJOR_VERSION >= 1:
