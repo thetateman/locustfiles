@@ -39,7 +39,6 @@ else:
     from locust import task
 
 USER_CREDENTIALS = list(range(1, 100))
-USER_CREDENTIALS.remove(53)
 
 class ChatTestSequence(TaskSequence):
     socket_id = ''
@@ -734,9 +733,9 @@ class ChatTestSequence(TaskSequence):
                                             'Referer': 'https://alpha.nextthought.com/app/',
                                             'Accept-Encoding': 'gzip, deflate, br',
                                             'Accept-Language': 'en-US,en;q=0.9'})
-        print(response.text)
+        """print(response.text)
         print("---------------^^^^SOCKET INFO^^^^--------------------")
-        self.socket_id = response.text.split(':')[0]
+        self.socket_id = response.text.split(':')[0]"""
 
 
         
@@ -857,8 +856,110 @@ class ChatTestSequence(TaskSequence):
                      'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9',
                      'If-None-Match': '"Ug7MBBOHlDEUFxanIvGcXQ./gz"',
                      'If-Modified-Since': 'Thu, 15 Jul 2021 21:54:17 GMT'})
+    """
+    @seq_task(166)
+    def DELETE_https_alpha_nextthought_com_1547110500__dataserver2_users_stress_tester73___NamedLinks_content_initial_tos_page_3739556734_8779724295116124966(
+            self):
+        response = self.client.delete(
+            url=f'https://alpha.nextthought.com/dataserver2/users/stress.tester{self.user_id}/@@NamedLinks/content.initial_tos_page',
+            name=f'https://alpha.nextthought.com/dataserver2/users/stress.tester{self.user_id}/@@NamedLinks/content.initial_tos_page',
+            timeout=30, allow_redirects=False,
+            headers={'Host': 'alpha.nextthought.com', 'Connection': 'keep-alive', 'Accept': 'application/json',
+                     'X-NTI-Client-Version': '2021.12.0-alpha.20210923190802', 'X-NTI-Client-App': '@nti/web-app',
+                     'X-Requested-With': 'XMLHttpRequest',
+                     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36',
+                     'Sec-GPC': '1', 'Origin': 'https://alpha.nextthought.com', 'Sec-Fetch-Site': 'same-origin',
+                     'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty',
+                     'Referer': 'https://alpha.nextthought.com/app/', 'Accept-Encoding': 'gzip, deflate, br',
+                     'Accept-Language': 'en-US,en;q=0.9'})
+        time.sleep(8)
+    """
+    @seq_task(144)
+    def POST_https_alpha_nextthought_com_1547110500__dataserver2_users_stress_tester73_FriendsLists_2913341951_382001698497351934(
+            self):
+        response = self.client.post(url=f'https://alpha.nextthought.com/dataserver2/users/stress.tester{self.user_id}/FriendsLists',
+                                    name=f'https://alpha.nextthought.com/dataserver2/users/stress.tester{self.user_id}/FriendsLists',
+                                    timeout=30, allow_redirects=False,
+                                    headers={'Host': 'alpha.nextthought.com', 'Connection': 'keep-alive',
+                                             'Content-Length': '154', 'X-NTI-Client-TZOffset': '-300',
+                                             'X-NTI-Client-Timezone': 'America/Chicago',
+                                             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36',
+                                             'Content-Type': 'application/json', 'accept': 'application/json',
+                                             'X-NTI-Client-Version': '2021.12.0-alpha.20210923190802',
+                                             'X-NTI-Client-App': '@nti/web-app', 'x-requested-with': 'XMLHttpRequest',
+                                             'Sec-GPC': '1', 'Origin': 'https://alpha.nextthought.com',
+                                             'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors',
+                                             'Sec-Fetch-Dest': 'empty', 'Referer': 'https://alpha.nextthought.com/app/',
+                                             'Accept-Encoding': 'gzip, deflate, br',
+                                             'Accept-Language': 'en-US,en;q=0.9'},
+                                    json={'MimeType': 'application/vnd.nextthought.friendslist',
+                                          'Username': f'mycontacts-stress.tester{self.user_id}', 'alias': 'My Contacts',
+                                          'friends': [], 'IsDynamicSharing': False})
+        time.sleep(8)
+        
 
 
+    @seq_task(146)
+    def PUT_https_alpha_nextthought_com_1547110500__dataserver2_users_stress_tester51_FriendsLists_mycontacts_stress_tester51_674307179_5556765244745205178(
+            self):
+        response = self.client.put(
+            url=f'https://alpha.nextthought.com/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
+            name=f'https://alpha.nextthought.com/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
+            timeout=30, allow_redirects=False,
+            headers={'Host': 'alpha.nextthought.com', 'Connection': 'keep-alive', 'Content-Length': '962',
+                     'X-NTI-Client-TZOffset': '-300', 'X-NTI-Client-Timezone': 'America/Chicago',
+                     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36',
+                     'Content-Type': 'application/json', 'accept': 'application/json',
+                     'X-NTI-Client-Version': '2021.11.2', 'X-NTI-Client-App': '@nti/web-app',
+                     'x-requested-with': 'XMLHttpRequest', 'Sec-GPC': '1', 'Origin': 'https://alpha.nextthought.com',
+                     'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty',
+                     'Referer': 'https://alpha.nextthought.com/app/user/stress.tester76',
+                     'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9'},
+            json={'Creator': f'stress.tester{self.user_id}', 'CreatedTime': 1620229030.540428, 'Last Modified': 1620412159.112719,
+                  'NTIID': f'tag:nextthought.com,2011-10:stress.tester{self.user_id}-MeetingRoom:Group-mycontacts_stress.tester{self.user_id}',
+                  'MimeType': 'application/vnd.nextthought.friendslist',
+                  'OID': f'tag:nextthought.com,2011-10:stress.tester{self.user_id}-OID-0x1f4bb8b7:5573657273:KZ5c0zMXcH3', 'Links': [
+                    {'href': f'/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
+                     'ntiid': f'tag:nextthought.com,2011-10:stress.tester{self.user_id}-MeetingRoom:Group-mycontacts_stress.tester{self.user_id}',
+                     'rel': 'edit'}],
+                  'href': f'/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
+                  'alias': 'My Contacts', 'avatarURL': None, 'blurredAvatarURL': None,
+                  'ID': f'mycontacts-stress.tester{self.user_id}', 'realname': f'mycontacts-stress.tester{self.user_id}',
+                  'Username': f'mycontacts-stress.tester{self.user_id}',
+                  'friends': [f'stress.tester{self.user_id + 1}']}, params=[])
+    @seq_task(264)
+    def PUT_https_alpha_nextthought_com_1547110500__dataserver2_users_stress_tester93_FriendsLists_mycontacts_stress_tester93_691346551_3524686157509020090(
+            self):
+        time.sleep(30)
+        """
+        response = self.client.put(
+            url=f'https://alpha.nextthought.com/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
+            name=f'https://alpha.nextthought.com/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
+            timeout=30, allow_redirects=False,
+            headers={'Host': 'alpha.nextthought.com', 'Connection': 'keep-alive', 'Content-Length': '836',
+                     'X-NTI-Client-TZOffset': '-300', 'X-NTI-Client-Timezone': 'America/Chicago',
+                     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36',
+                     'Content-Type': 'application/json', 'accept': 'application/json',
+                     'X-NTI-Client-Version': '2021.12.0-alpha.20210922202435', 'X-NTI-Client-App': '@nti/web-app',
+                     'x-requested-with': 'XMLHttpRequest', 'Sec-GPC': '1',
+                     'Origin': 'https://alpha.nextthought.com', 'Sec-Fetch-Site': 'same-origin',
+                     'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty',
+                     'Referer': 'https://alpha.nextthought.com/app/user/stress.tester91',
+                     'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-US,en;q=0.9'},
+            json={'Creator': f'stress.tester{self.user_id}', 'CreatedTime': 1632344251.669365,
+                  'Last Modified': 1632344251.670834,
+                  'NTIID': f'tag:nextthought.com,2011-10:stress.tester{self.user_id}-MeetingRoom:Group-mycontacts_stress.tester{self.user_id}',
+                  'MimeType': 'application/vnd.nextthought.friendslist',
+                  'OID': f'tag:nextthought.com,2011-10:stress.tester{self.user_id}-OID-0x29c418a4:5573657273:hEMRCH4cfKf',
+                  'Links': [{'href': f'/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
+                             'ntiid': f'tag:nextthought.com,2011-10:stress.tester{self.user_id}-MeetingRoom:Group-mycontacts_stress.tester{self.user_id}',
+                             'rel': 'edit'}],
+                  'href': f'/dataserver2/users/stress.tester{self.user_id}/FriendsLists/mycontacts-stress.tester{self.user_id}',
+                  'alias': 'My Contacts', 'avatarURL': None, 'blurredAvatarURL': None,
+                  'ID': f'mycontacts-stress.tester{self.user_id}', 'realname': f'mycontacts-stress.tester{self.user_id}',
+                  'Username': f'mycontacts-stress.tester{self.user_id}', 'friends': [f'stress.tester{self.user_id + 1}']}, params=[])"""
+
+    """
     @seq_task(147)
     def GET_wss_alpha_nextthought_com_1547110500__socket_io_1_websocket_sessionid_635440412_6214409689335893478(self):
 
@@ -894,13 +995,13 @@ class ChatTestSequence(TaskSequence):
 
 
         OID_start = incoming_message.find("OID-")
-        OID_end = incoming_message.find("\"", OID_start)
+        OID_end = incoming_message.find("", OID_start)
         OID = incoming_message[OID_start + 4:OID_end]
         self.ws.send(f'5:3+::{{"name":"chat_postMessage","args":[{{"Class":"MessageInfo","ContainerId":"tag:nextthought.com,2011-10:stress.tester{self.user_id}-OID-{OID}","body":{{"state":"composing"}},"channel":"STATE"}}]}}')
         time.sleep(1)
         self.ws.send(f'5:4+::{{"name":"chat_postMessage","args":[{{"Class":"MessageInfo","ContainerId":"tag:nextthought.com,2011-10:stress.tester{self.user_id}-OID-{OID}","body":["locustTest"],"channel":"DEFAULT"}}]}}')
         time.sleep(30)
-
+    """
 class LocustForalpha_nextthought_com12_har_2480081456(HttpLocust):
     if LOCUST_MAJOR_VERSION >= 1:
         tasks = [ChatTestSequence]
